@@ -1,7 +1,11 @@
 .main-container {
-  display: block;
-  margin: auto;
   text-align: center;
+  width: 25rem;
+  margin: 3rem auto;
+  color: rgba(255, 255, 255, 0.6);
 }
-.calendar {
+
+.calendar-container {
+  border-radius: 0.5rem;
+  overflow: hidden;
 }

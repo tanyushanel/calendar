@@ -1,11 +1,16 @@
 <router-outlet></router-outlet>
 <div class="main-container">
   <h2>Calendar-planner</h2>
-  <app-calendar class="calendar"></app-calendar>
-  <div class="action-block">
-    <ul class="action-list">
-      <li class="action"> <button class="btn-del">Delete</button></li>
-      <button class="btn-add">Add</button>
-    </ul>
+  <div class="calendar-container">
+    <header>
+      <app-selector class="selector"></app-selector>
+    </header>
+    <main>
+      <app-calendar class="calendar"></app-calendar>
+    </main>
+  </div>
+
+  <div class="organizer-container">
+    <app-organizer class="organizer"></app-organizer>
   </div>
 </div>
