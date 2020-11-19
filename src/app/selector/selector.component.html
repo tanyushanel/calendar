@@ -1,9 +1,11 @@
 <div class="selector-container">
-    <span class="material-icons prev">
+    <span class="material-icons prev"
+          (click)="go(-1)">
         keyboard_arrow_left
     </span>
-    <span class="date"><b>Text</b></span>
-    <span class="material-icons next">
+    <span class="date"><b>{{ dateService.date | async | moment }}</b></span>
+    <span class="material-icons next"
+          (click)="go(1)">
         keyboard_arrow_right
     </span>
 </div>

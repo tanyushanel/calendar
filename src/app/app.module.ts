@@ -1,3 +1,4 @@
+import { MomentPipe } from './moment.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +13,13 @@ import { SelectorComponent } from './selector/selector.component';
 import { OrganizerComponent } from './organizer/organizer.component';
 
 @NgModule({
-  declarations: [AppComponent, CalendarComponent, SelectorComponent, OrganizerComponent],
+  declarations: [
+    AppComponent,
+    CalendarComponent,
+    SelectorComponent,
+    OrganizerComponent,
+    MomentPipe,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
