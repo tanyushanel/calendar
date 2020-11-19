@@ -1,3 +1,19 @@
-<ul>
-    <li>hhh</li>
-</ul>
+<table>
+    <tr class="t-header">
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+    </tr>
+    <tr *ngFor="let week of calendar">
+        <td *ngFor="let day of week.days"
+            [class.disabled]="day.disabled"
+            [class.active]="day.active"
+            [class.selected]="day.selected"
+            (click)="toSelect(day.value)"> {{ day.value | moment:'D' }} </td>
+    </tr>
+
+</table>

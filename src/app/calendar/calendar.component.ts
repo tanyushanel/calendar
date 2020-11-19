@@ -27,7 +27,7 @@ export class CalendarComponent implements OnInit {
     this.dateService.date.subscribe(this.toGenerateMonth.bind(this));
   }
 
-  toGenerateMonth(now: moment.Moment) {
+  toGenerateMonth(now: moment.Moment): void {
     const startDay = now.clone().startOf('month').startOf('week');
     const endDay = now.clone().endOf('month').endOf('week');
 
@@ -49,6 +49,10 @@ export class CalendarComponent implements OnInit {
       });
     }
 
-    console.log(calendar);
+    this.calendar = calendar;
+  }
+
+  toSelect(day: moment.Moment): void {
+    this.dateService.goToDay(day);
   }
 }
