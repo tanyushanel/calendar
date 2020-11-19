@@ -7,7 +7,6 @@ table {
 
 th,
 td {
-  padding: 0.5rem;
   width: 3rem;
   height: 3rem;
   box-sizing: border-box;
@@ -15,12 +14,13 @@ td {
 
 .t-header * {
   color: #20bf55;
-  background: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  background: linear-gradient(315deg, #20bf55 0%, #51c5f6 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 td {
+  position: relative;
   &.disabled {
     opacity: 40%;
   }
@@ -29,7 +29,7 @@ td {
     border: 1px solid white;
     border-radius: 0.25rem;
     background: #88848c;
-    color: white;
+    color: #51c5f6;
     font-size: 160%;
   }
 
@@ -41,4 +41,11 @@ td {
   &:hover:not(.disabled) {
     cursor: pointer;
   }
+}
+
+.material-icons.star {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 0.5rem;
 }
