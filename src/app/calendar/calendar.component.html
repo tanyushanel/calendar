@@ -13,13 +13,12 @@
             [class.disabled]="day.disabled"
             [class.active]="day.active"
             [class.selected]="day.selected"
-            (click)="toSelect(day.value)">
-
+            (click)="toSelectDay(day.value)">
 
             <span>
                 {{ day.value | moment:'D' }}
 
-                <span *ngIf="day.selected"
+                <span *ngIf=" day.active "
                       class="material-icons star">star</span>
             </span>
         </td>

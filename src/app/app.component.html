@@ -6,11 +6,13 @@
       <app-selector class="selector"></app-selector>
     </header>
     <main>
-      <app-calendar class="calendar"></app-calendar>
+      <app-calendar (dateSelected)="goToSelected()"
+                    class="calendar"></app-calendar>
     </main>
   </div>
 
   <div class="organizer-container">
     <app-organizer class="organizer"></app-organizer>
   </div>
+
 </div>

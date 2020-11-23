@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { DateService } from './date.service';
+import { BehaviorSubject } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'calendar';
+
+  constructor(private dateService: DateService) {}
+
+  goToSelected(): void {
+    this.dateService.goToDay(this.dateService.date.value);
+  }
 }

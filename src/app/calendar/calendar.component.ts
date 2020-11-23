@@ -1,18 +1,8 @@
-import { DateService } from './../date.service';
+import { DateService, Week } from './../date.service';
 import { Component, OnInit } from '@angular/core';
-import { generate } from 'rxjs';
+
 import * as moment from 'moment';
-
-interface Day {
-  value: moment.Moment;
-  active: boolean;
-  disabled: boolean;
-  selected: boolean;
-}
-
-interface Week {
-  days: Day[];
-}
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-calendar',
@@ -21,7 +11,11 @@ interface Week {
 })
 export class CalendarComponent implements OnInit {
   calendar: Week[];
-  constructor(private dateService: DateService) {}
+
+  constructor(
+    private dateService: DateService,
+    private taskService: TaskService
+  ) {}
 
   ngOnInit(): void {
     this.dateService.date.subscribe(this.toGenerateMonth.bind(this));
@@ -44,6 +38,7 @@ export class CalendarComponent implements OnInit {
             const active = moment().isSame(value, 'date');
             const disabled = !now.isSame(value, 'month');
             const selected = now.isSame(value, 'date');
+
             return { value, active, disabled, selected };
           }),
       });
@@ -52,7 +47,8 @@ export class CalendarComponent implements OnInit {
     this.calendar = calendar;
   }
 
-  toSelect(day: moment.Moment): void {
+  toSelectDay(day: moment.Moment): void {
     this.dateService.goToDay(day);
+    this.taskService.toShowTasks(day);
   }
 }
