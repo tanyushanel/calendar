@@ -10,16 +10,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./organizer.component.scss'],
 })
 export class OrganizerComponent implements OnInit {
-  tasks: Task[] = [];
-
   task: Task = {
     title: '',
     date: this.dateService.date,
-    done: false,
   };
 
   form: FormGroup;
   title: FormControl;
+  tasks: Task[] = [];
   constructor(
     private dateService: DateService,
     private taskService: TaskService
@@ -33,9 +31,11 @@ export class OrganizerComponent implements OnInit {
   }
 
   toAddTaskSubmit(): void {
-    this.task.title = this.title.value;
-    this.tasks.push(this.task);
-    console.log(this.task.title, this.task, this.tasks);
+    const task = new Task();
+    task.title = this.title.value;
+    task.date = this.dateService.date;
+    this.tasks.push(task);
+    this.form.reset();
   }
 
   toShowTasks() {}

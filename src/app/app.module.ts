@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MomentPipe } from './moment.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { SelectorComponent } from './selector/selector.component';
 import { OrganizerComponent } from './organizer/organizer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    NgxMaterialTimepickerModule,
   ],
   providers: [MatDatepickerModule, MatNativeDateModule],
   bootstrap: [AppComponent],
