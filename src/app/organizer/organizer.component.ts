@@ -17,6 +17,7 @@ export class OrganizerComponent implements OnInit {
 
   form: FormGroup;
   title: FormControl;
+  date: FormControl;
   tasks: Task[] = [];
   constructor(
     private dateService: DateService,
@@ -25,18 +26,20 @@ export class OrganizerComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = new FormControl('', Validators.required);
+    this.date = new FormControl('', Validators.required);
     this.form = new FormGroup({
       title: this.title,
+      date: this.date,
     });
   }
 
   toAddTaskSubmit(): void {
     const task = new Task();
     task.title = this.title.value;
-    task.date = this.dateService.date;
+    task.date = this.date.value;
     this.tasks.push(task);
     this.form.reset();
   }
 
-  toShowTasks() {}
+  toDelTaskSubmit() {}
 }
