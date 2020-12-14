@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-organizer',
@@ -10,36 +11,46 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./organizer.component.scss'],
 })
 export class OrganizerComponent implements OnInit {
-  task: Task = {
-    title: '',
-    date: this.dateService.date,
-  };
-
+  date: moment.Moment;
   form: FormGroup;
-  title: FormControl;
-  date: FormControl;
-  tasks: Task[] = [];
+  titleControl: FormControl;
+  dateControl: FormControl;
+  tasks: Task[] = this.taskService.tasks;
+
   constructor(
     private dateService: DateService,
     private taskService: TaskService
-  ) {}
+  ) {
+    this.date = this.dateService.date.value;
+  }
 
   ngOnInit(): void {
-    this.title = new FormControl('', Validators.required);
-    this.date = new FormControl('', Validators.required);
+    this.titleControl = new FormControl('', Validators.required);
+    this.dateControl = new FormControl('', Validators.required);
     this.form = new FormGroup({
-      title: this.title,
-      date: this.date,
+      title: this.titleControl,
+      time: this.dateControl,
     });
+    this.dateService.date.subscribe((nextValue) => this.onDayChange(nextValue));
+  }
+
+  onDayChange(day: moment.Moment): void {
+    this.tasks = this.taskService.getTasksByDate(day);
   }
 
   toAddTaskSubmit(): void {
+    const selectedTime = this.dateControl.value; // "09:30:26"
+
     const task = new Task();
-    task.title = this.title.value;
-    task.date = this.date.value;
-    this.tasks.push(task);
+    task.title = this.titleControl.value;
+    task.time = moment(
+      this.dateService.date.value.format('YYYY-MM-DD') + ' ' + selectedTime
+    ); // "01.02.2020 14:00"
+    this.taskService.saveTask(task);
     this.form.reset();
   }
 
-  toDelTaskSubmit() {}
+  toDelTaskSubmit() {
+    // this.taskService.deleteTask();
+  }
 }

@@ -1,6 +1,6 @@
 <section class="organizer-container">
     <header>
-        <strong>{{ task.date | async | moment: 'D  MMMM YYYY' }}</strong>
+        <strong>{{ date | moment: 'D  MMMM YYYY' }}</strong>
     </header>
     <main>
         <form (ngSubmit)="toAddTaskSubmit()"
@@ -13,7 +13,7 @@
                        placeholder="Set time..."
                        [ngxTimepicker]="fullTime"
                        [format]="24"
-                       formControlName="date"
+                       formControlName="time"
                        readonly>
                 <ngx-material-timepicker #fullTime></ngx-material-timepicker>
 
@@ -33,7 +33,7 @@
         <ul>
             <li *ngFor="let task of tasks"
                 class="task">
-                <strong> {{ task.date }} </strong>
+                <strong> {{ task.time.format('HH:MM') }} </strong>
                 <span> {{ task.title }} </span>
                 <button class="btn del">Del</button>
             </li>

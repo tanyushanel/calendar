@@ -49,6 +49,5 @@ export class CalendarComponent implements OnInit {
 
   toSelectDay(day: moment.Moment): void {
     this.dateService.goToDay(day);
-    this.taskService.toShowTasks(day);
   }
 }
