@@ -34,6 +34,10 @@ input {
   box-sizing: border-box;
   border: none;
   border-radius: 0.2rem;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
 }
 
 .btn:not([disabled]) {
@@ -51,4 +55,8 @@ li:nth-child(2n + 1) {
 
 li:nth-child(3n) {
   color: rgb(34, 175, 128);
+}
+
+.is-deleted {
+  opacity: 20%;
 }

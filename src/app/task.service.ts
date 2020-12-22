@@ -10,7 +10,7 @@ export class Task {
   title: string;
   time?: moment.Moment;
   tasks?: Task[];
-  done?: boolean;
+  isDeleted?: boolean;
 }
 
 @Injectable({
@@ -24,7 +24,7 @@ export class TaskService {
   tasks: Task[] = [];
   constructor(private http: HttpClient, private dateService: DateService) {}
 
-  saveTask(task: Task, selectedTime: string): void {
+  saveTask(task: Task): void {
     // this.http.post<any>(`${this.url}/${task.date}.json`, task).pipe(
     //   map((res) => {
     //     console.log(res);
@@ -33,11 +33,11 @@ export class TaskService {
     // );
 
     this.tasks.push(task);
-    this.saveToLocalStore(task);
+    this.saveTaskToLocalStore(task);
   }
 
   deleteTask(task: Task) {
-    // this.tasks.filter((item) => item !== task);
+    localStorage.removeItem(task.time.toString());
   }
 
   getTasksByDate(date: moment.Moment): Task[] {
@@ -56,7 +56,7 @@ export class TaskService {
     return this.tasks;
   }
 
-  saveToLocalStore(task: Task): void {
+  saveTaskToLocalStore(task?: Task): void {
     localStorage.setItem(task.time.toString(), JSON.stringify(task));
   }
 }

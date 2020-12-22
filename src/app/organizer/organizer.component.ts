@@ -46,11 +46,12 @@ export class OrganizerComponent implements OnInit {
     task.time = moment(
       this.dateService.date.value.format('MMMM DD YYYY') + ' ' + selectedTime
     );
-    this.taskService.saveTask(task, selectedTime);
+    this.taskService.saveTask(task);
     this.form.reset();
   }
 
-  toDelTaskSubmit() {
-    // this.taskService.deleteTask();
+  toDelTaskSubmit(task: Task) {
+    task.isDeleted = true;
+    this.taskService.deleteTask(task);
   }
 }
