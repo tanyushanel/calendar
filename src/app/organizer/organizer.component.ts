@@ -39,14 +39,14 @@ export class OrganizerComponent implements OnInit {
   }
 
   toAddTaskSubmit(): void {
-    const selectedTime = this.dateControl.value; // "09:30:26"
+    const selectedTime = this.dateControl.value;
 
     const task = new Task();
     task.title = this.titleControl.value;
     task.time = moment(
-      this.dateService.date.value.format('YYYY-MM-DD') + ' ' + selectedTime
-    ); // "01.02.2020 14:00"
-    this.taskService.saveTask(task);
+      this.dateService.date.value.format('MMMM DD YYYY') + ' ' + selectedTime
+    );
+    this.taskService.saveTask(task, selectedTime);
     this.form.reset();
   }
 

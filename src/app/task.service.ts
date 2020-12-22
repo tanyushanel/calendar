@@ -3,12 +3,13 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 export class Task {
   id?: string;
   title: string;
   time?: moment.Moment;
-  // date?: moment.Moment;
+  tasks?: Task[];
   done?: boolean;
 }
 
@@ -23,22 +24,35 @@ export class TaskService {
   tasks: Task[] = [];
   constructor(private http: HttpClient, private dateService: DateService) {}
 
-  saveTask(task: Task): void {
+  saveTask(task: Task, selectedTime: string): void {
     // this.http.post<any>(`${this.url}/${task.date}.json`, task).pipe(
     //   map((res) => {
     //     console.log(res);
     //     return res;
     //   })
     // );
+
     this.tasks.push(task);
     this.saveToLocalStore(task);
   }
 
   deleteTask(task: Task) {
-    this.tasks.filter((item) => item !== task);
+    // this.tasks.filter((item) => item !== task);
   }
 
   getTasksByDate(date: moment.Moment): Task[] {
+    let key;
+    const keys = Object.keys(localStorage);
+
+    for (let i = 0; (key = keys[i]); i++) {
+      const task: Task = JSON.parse(localStorage.getItem(key));
+      task.time = moment(task.time);
+      this.tasks.push(task);
+    }
+
+    this.tasks = this.tasks.filter(
+      (item) => item.time.format('YY M D') == date.format('YY M D')
+    );
     return this.tasks;
   }
 

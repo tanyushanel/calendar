@@ -16,14 +16,11 @@
                        formControlName="time"
                        readonly>
                 <ngx-material-timepicker #fullTime></ngx-material-timepicker>
-
             </div>
 
             <input type="text"
                    placeholder="Set task name..."
                    formControlName="title">
-
-
 
             <button class="btn add"
                     [disabled]="form.invalid">Add</button>
@@ -33,7 +30,7 @@
         <ul>
             <li *ngFor="let task of tasks"
                 class="task">
-                <strong> {{ task.time.format('HH:MM') }} </strong>
+                <strong> {{ task.time.format('HH:mm') }} </strong>
                 <span> {{ task.title }} </span>
                 <button class="btn del">Del</button>
             </li>
