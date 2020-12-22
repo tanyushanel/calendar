@@ -36,13 +36,10 @@ input {
   border-radius: 0.2rem;
 
   &:not([disabled]) {
+    background: #88848c;
+    color: #ffffff;
     cursor: pointer;
   }
-}
-
-.btn:not([disabled]) {
-  background: #88848c;
-  color: #ffffff;
 }
 
 li:nth-child(2n) {
