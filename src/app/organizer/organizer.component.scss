@@ -9,6 +9,18 @@ li {
   justify-content: space-between;
   padding-left: 2rem;
   margin: 0.25rem 0;
+
+  &:nth-child(2n) {
+    color: rgb(216, 52, 142);
+  }
+
+  &:nth-child(2n + 1) {
+    color: #51c5f6;
+  }
+
+  &:nth-child(3n) {
+    color: rgb(34, 175, 128);
+  }
 }
 
 input {
@@ -40,18 +52,6 @@ input {
     color: #ffffff;
     cursor: pointer;
   }
-}
-
-li:nth-child(2n) {
-  color: rgb(216, 52, 142);
-}
-
-li:nth-child(2n + 1) {
-  color: #51c5f6;
-}
-
-li:nth-child(3n) {
-  color: rgb(34, 175, 128);
 }
 
 .is-deleted {
